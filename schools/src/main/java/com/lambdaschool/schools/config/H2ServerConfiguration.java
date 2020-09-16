@@ -21,7 +21,7 @@ public class H2ServerConfiguration
     /**
      * TCP port for remote connections, default 9092.
      */
-    @Value("${h2.tcp.port:9092}")
+    @Value("${h2.tcp.port:8092}")
     private String h2TcpPort;
 
     /**

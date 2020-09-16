@@ -1,9 +1,7 @@
 package com.lambdaschool.schools.handlers;
 
-//import com.lambdaschool.models.ErrorDetail;
 import com.lambdaschool.schools.models.ErrorDetail;
 import com.lambdaschool.schools.services.HelperFunctions;
-//import com.lambdaschool.services.HelperFunctions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -39,7 +37,7 @@ import java.util.Date;
             errorDetail.setTimestamp(new Date());
             errorDetail.setStatus(status.value());
             errorDetail.setTitle("Rest Internal Exception");
-            errorDetail.setDetail(ex.getMessage());
+            errorDetail.setDetail("Found an error with School :" + ex.getMessage());
             errorDetail.setDeveloperMessage(ex.getClass().getName());
 
             errorDetail.setErrors(helperFunctions.getConstraintViolation(ex));

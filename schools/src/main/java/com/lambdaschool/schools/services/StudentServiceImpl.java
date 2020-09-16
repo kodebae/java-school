@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
+import com.lambdaschool.schools.exceptions.ResourceNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class StudentServiceImpl
     public Student findStudentById(long id)
     {
         return studentrepos.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Student id " + id + " not found!"));
+            .orElseThrow(() -> new ResourceNotFoundException("Student id " + id + " not found!"));
     }
 
     @Transactional
@@ -57,7 +57,7 @@ public class StudentServiceImpl
     public void delete(long id)
     {
         studentrepos.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Student id " + id + " not found!"));
+            .orElseThrow(() -> new ResourceNotFoundException("Student id " + id + " not found!"));
         studentrepos.deleteById(id);
     }
 
@@ -70,7 +70,7 @@ public class StudentServiceImpl
         if (student.getStudentid() != 0)
         {
             Student oldStudent = studentrepos.findById(student.getStudentid())
-                .orElseThrow(() -> new EntityNotFoundException("Student id " + student.getStudentid() + " not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Student id " + student.getStudentid() + " not found!"));
 
             // delete the courses for the old student we are replacing
             for (StudCourses ur : oldStudent.getCourses())
